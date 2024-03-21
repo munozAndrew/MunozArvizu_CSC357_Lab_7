@@ -20,7 +20,7 @@ void alarm_handler(int s) {
 
 int main (int argc, char *argv[]){
 	if (argc != 3) {
-		perror("Too many or little Arguments, only input Seconds, program");
+		perror("Too many or few Arguments, only input Seconds, program");
 		return 1;
 	}
 
@@ -56,9 +56,11 @@ int main (int argc, char *argv[]){
 		waitpid(pid, &status, 0);
 
 		if (WIFEXITED(status)) {
-
+			int exit_status = WEXITSTATUS(status);
+			printf("Child process exited normally with status %d\n", exit_status);
 			return WEXITSTATUS(status);
 		} else {
+			printf("Child did not return normally");
 			return 1;
 		}
 
