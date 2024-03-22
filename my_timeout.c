@@ -14,12 +14,13 @@ pid_t pid;
 
 void alarm_handler(int s) {
 	if(pid != 0) {
+		printf("Killing child ...\n");
 		kill(pid, SIGKILL);
 	}
 }
 
 int main (int argc, char *argv[]){
-	if (argc != 3) {
+	if (argc < 3) {
 		perror("Too many or few Arguments, only input Seconds, program");
 		return 1;
 	}
@@ -57,10 +58,10 @@ int main (int argc, char *argv[]){
 
 		if (WIFEXITED(status)) {
 			int exit_status = WEXITSTATUS(status);
-			printf("Child process exited normally with status %d\n", exit_status);
-			return WEXITSTATUS(status);
+			//printf("Child process exited normally with status %d\n", exit_status);
+			return exit_status;
 		} else {
-			printf("Child did not return normally");
+			//printf("Child did not return normally");
 			return 1;
 		}
 
