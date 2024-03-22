@@ -62,11 +62,12 @@ void run_service(int fd)
 	if(pid == 0) {
 		printf("Connection established\n");
 		handle_request(nfd);
+		printf("Connection closed\n");
 		exit(0);
 	} else if (pid > 0){
 
 
-		close(fd);
+		close(nfd);
 	} else {
 		perror("fork failed");
 	}
