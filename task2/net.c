@@ -1,5 +1,3 @@
-/* code taken and adapted from http://www.ecst.csuchico.edu/~beej/guide/net/ */
-
 #include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -8,7 +6,6 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <errno.h>
-
 #define QUEUE_SIZE 50
 
 int create_service(short port)
